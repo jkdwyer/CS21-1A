@@ -1,4 +1,4 @@
-import java.text.NumberFormat;
+import java.text.*;
 
 /**
  * AbstractLinkedList class
@@ -176,6 +176,7 @@ public abstract class AbstractLinkedList {
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(3);
         nf.setMinimumFractionDigits(3);
+        DecimalFormat df = (DecimalFormat) nf;
         StringBuffer chainBuf = new StringBuffer();
 
         // loop over list and add each payload to output file.
@@ -184,7 +185,8 @@ public abstract class AbstractLinkedList {
         if (!isEmpty()) {
             for (int j = 0; j < nodeCounter; j++) {
                 dPayload = dNode.getPayload();
-                strPayload = nf.format(dPayload);
+                df.setGroupingUsed(false);
+                strPayload = df.format(dPayload);
                 chainBuf.append("ct: " + (j + 1) + " - payload: " + strPayload);
                 if (dNode.equals(head)) {
                     chainBuf.append(" (head)");
