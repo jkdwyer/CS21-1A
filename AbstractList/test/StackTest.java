@@ -3,9 +3,21 @@ import junit.framework.TestCase;
 public class StackTest extends TestCase {
     public void testInsertNode() throws Exception {
         Stack s = new Stack();
-        Node n = new Node();
-        s.insertNode(n);
+        Node n1 = new Node();
+        Node n2 = new Node();
+        Node n3 = new Node();
+        s.insertNode(n1);
         assertEquals(s.nodeCounter, 1);
+        assertEquals(s.head, n1);
+        assertEquals(s.tail, n1);
+        s.insertNode(n2);
+        assertEquals(s.nodeCounter, 2);
+        assertEquals(s.head, n2);
+        assertEquals(s.tail, n1);
+        s.insertNode(n3);
+        assertEquals(s.nodeCounter, 3);
+        assertEquals(s.head, n3);
+        assertEquals(s.tail, n1);
     }
 
     public void testDeleteNode() throws Exception {
@@ -14,11 +26,17 @@ public class StackTest extends TestCase {
         Node n2 = new Node();
         Node n3;
         s.insertNode(n1);
+        assertEquals(s.head, n1);
+        assertEquals(s.tail, n1);
         s.insertNode(n2);
         assertEquals(s.nodeCounter, 2);
+        assertEquals(s.head, n2);
+        assertEquals(s.tail, n1);
         n3 = s.deleteNode();
         assertEquals(n3, n2);
         assertEquals(s.nodeCounter, 1);
+        assertEquals(s.head, n1);
+        assertEquals(s.tail, n1);
     }
 
     public void testIsEmptyTrue() throws Exception {
@@ -187,6 +205,6 @@ public class StackTest extends TestCase {
         String cc = returnedChain.toString();
         String tc = pc.toString();
         assertEquals(cc, tc);
-        // assertTrue(returnedChain.toString().equals(pc.toString()));
+        assertTrue(returnedChain.toString().equals(pc.toString()));
     }
 }   // end StackTest.

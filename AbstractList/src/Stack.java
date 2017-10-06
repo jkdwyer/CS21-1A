@@ -47,8 +47,7 @@ public class Stack extends AbstractLinkedList {
      * @return
      */
     public Node deleteNode() {
-        Node currentHead = new Node();
-        currentHead = head;
+        Node currentHead = head;
         head = currentHead.getNext();
         nodeCounter--;
         // return value is the node that was the previous head.

@@ -47,8 +47,9 @@ public class Queue extends AbstractLinkedList {
      * @return Node
      */
     public Node deleteNode() {
-       head = head.getNext();
-       nodeCounter--;
-       return head;
+        Node lastHead = head;
+        head = head.getNext();
+        nodeCounter--;
+        return lastHead;
     }   // end deleteNode.
 }   // end Queue subclass.
