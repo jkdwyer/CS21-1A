@@ -10,24 +10,10 @@
  */
 public class MakeAbstractListApp {
     public static void main(String args[]) {
-        System.out.println("in MakeAbstractListApp");
+        // System.out.println("in MakeAbstractListApp");
 
-        Node n1 = new Node(144);
-        Node n2 = new Node(12.22);
-        Node n3 = new Node(3333.88999);
-        Node n4 = new Node(150.0123);
-        Node n5 = new Node(0.0847);
-        Node n6 = new Node(16.9);
-
-        LinkedList newList = new LinkedList();
-        newList.insertNode(n1);   // 6 (tail)
-        newList.insertNode(n2);   // 5
-        newList.insertNode(n3);   // 4
-        newList.insertNode(n4);   // 3
-        newList.insertNode(n5);   // 2
-        newList.insertNode(n6);   // 1 (head)
-        System.out.println("writeDoublesToConsole output:");
-        ListHelper.writeDoublesToConsole(newList);
+        Stack newStack = StackHelper.readDoublesFromConsole();
+        StackHelper.writeDoublesToConsole(newStack);
 
         /*
         System.out.println("Stack tests:");
@@ -96,12 +82,11 @@ public class MakeAbstractListApp {
         LinkedList doubleList;
         doubleList = ListHelper.readDoublesFromConsole();
         doubleList.printList();
-        */
+
         // Block 2 - test output of call:
         String readFromFile = "inputDoubles.txt";
         LinkedList dblList = ListHelper.readDoublesFromFile(readFromFile);
         dblList.printList();
-
 
         // Block 3 - test output of call:
         String filename = "outputDoubles.txt";
@@ -111,6 +96,23 @@ public class MakeAbstractListApp {
         // TODO:  need to verify existence and contents of file created.
         // this will tell you the default file location.
 
+        // Block 4 - test output of call:
+        Node n1 = new Node(144);
+        Node n2 = new Node(12.22);
+        Node n3 = new Node(3333.88999);
+        Node n4 = new Node(150.0123);
+        Node n5 = new Node(0.0847);
+        Node n6 = new Node(16.9);
+        LinkedList newList = new LinkedList();
+        newList.insertNode(n1);   // 6 (tail)
+        newList.insertNode(n2);   // 5
+        newList.insertNode(n3);   // 4
+        newList.insertNode(n4);   // 3
+        newList.insertNode(n5);   // 2
+        newList.insertNode(n6);   // 1 (head)
+        System.out.println("writeDoublesToConsole output:");
+        ListHelper.writeDoublesToConsole(newList);
+        */
 
     }   // end main.
 }   // end MakeAbstractListApp class.
