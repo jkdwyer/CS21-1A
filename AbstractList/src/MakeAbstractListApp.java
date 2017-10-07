@@ -12,21 +12,25 @@ public class MakeAbstractListApp {
     public static void main(String args[]) {
         System.out.println("in MakeAbstractListApp");
 
-        /*
-        Node node00;
-        Node node01 = new Node();
-        node01.setPayload(16.9);
-        Node node02 = new Node(50);
-        Node node03 = new Node(1.2227);
-        */
-
-        System.out.println("Stack tests:");
         Node n1 = new Node(144);
         Node n2 = new Node(12.22);
         Node n3 = new Node(3333.88999);
         Node n4 = new Node(150.0123);
         Node n5 = new Node(0.0847);
         Node n6 = new Node(16.9);
+
+        LinkedList newList = new LinkedList();
+        newList.insertNode(n1);   // 6 (tail)
+        newList.insertNode(n2);   // 5
+        newList.insertNode(n3);   // 4
+        newList.insertNode(n4);   // 3
+        newList.insertNode(n5);   // 2
+        newList.insertNode(n6);   // 1 (head)
+        System.out.println("writeDoublesToConsole output:");
+        ListHelper.writeDoublesToConsole(newList);
+
+        /*
+        System.out.println("Stack tests:");
         Stack st = new Stack();
         st.insertNode(n1);   // 6 (tail)
         st.insertNode(n2);   // 5
@@ -39,8 +43,11 @@ public class MakeAbstractListApp {
         System.out.println("printChain output:");
         st.printChain();
 
-
-        /*
+        Node node00;
+        Node node01 = new Node();
+        node01.setPayload(16.9);
+        Node node02 = new Node(50);
+        Node node03 = new Node(1.2227);
         Stack newStack = new Stack();
         if (newStack.isEmpty()) {
             System.out.println("Stack is empty");
@@ -89,19 +96,21 @@ public class MakeAbstractListApp {
         LinkedList doubleList;
         doubleList = ListHelper.readDoublesFromConsole();
         doubleList.printList();
-
+        */
         // Block 2 - test output of call:
         String readFromFile = "inputDoubles.txt";
         LinkedList dblList = ListHelper.readDoublesFromFile(readFromFile);
         dblList.printList();
 
+
         // Block 3 - test output of call:
         String filename = "outputDoubles.txt";
         // ListHelper.writeDoublesToFile(doubleList, filename);
-        ListHelper.writeDoublesToFile(dblList, filename);
+        // ListHelper.writeDoublesToFile(dblList, filename);
+        ListHelper.writeDoublesToFile(newList, filename);
         // TODO:  need to verify existence and contents of file created.
         // this will tell you the default file location.
-                */
+
 
     }   // end main.
 }   // end MakeAbstractListApp class.

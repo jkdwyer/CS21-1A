@@ -57,6 +57,8 @@ public class LinkedList extends AbstractLinkedList {
             }
             // reduce the node count.
             nodeCounter--;
+        } else {
+            System.out.println("List is empty");
         }
     }   // end deleteListNode.
 

@@ -1,5 +1,5 @@
 import java.io.*;
-import java.text.NumberFormat;
+import java.text.*;
 import java.util.Scanner;
 
 /**
@@ -69,23 +69,24 @@ public class ListHelper {
                 // TODO:  remove this output.
                 System.out.println("Name: " + dblFile.getName());
                 System.out.println("Readable: " + dblFile.canRead());
-            }
-            frInput = new FileReader(dblFile);
-            bufInput = new BufferedReader(frInput);
-            fileIn = new Scanner(bufInput);
-            // read double values from input text file.
-            while (fileIn.hasNextDouble()) {
-                Node nextNode = new Node();
-                Node otherNode = new Node();
-                dbl = fileIn.nextDouble();
-                nextNode.setPayload(dbl);
-                if (wct == 0) {
-                    list.insertListNode(nextNode, otherNode, after);
-                } else {
-                    otherNode = list.getHead();
-                    list.insertListNode(nextNode, otherNode, before);
+
+                frInput = new FileReader(dblFile);
+                bufInput = new BufferedReader(frInput);
+                fileIn = new Scanner(bufInput);
+                // read double values from input text file.
+                while (fileIn.hasNextDouble()) {
+                    Node nextNode = new Node();
+                    Node otherNode = new Node();
+                    dbl = fileIn.nextDouble();
+                    nextNode.setPayload(dbl);
+                    if (wct == 0) {
+                        list.insertListNode(nextNode, otherNode, after);
+                    } else {
+                        otherNode = list.getHead();
+                        list.insertListNode(nextNode, otherNode, before);
+                    }
+                    wct++;
                 }
-                wct++;
             }
         } catch (Exception e) {
             System.out.println("Error encountered in read");
@@ -94,6 +95,38 @@ public class ListHelper {
 
         return list;
     }   // end readDoublesFromFile.
+
+
+    /**
+     * writeDoublesToConsole() method
+     * - Accepts a LinkedList and writes formatted doubles from
+     *      the nodes in the LinkedList to the console.
+     * @param list
+     */
+    public static void writeDoublesToConsole(LinkedList list) {
+        System.out.println("in writeDoublesToConsole()");
+        int nct = 0;
+        Node dNode;
+        double dPayload = 0.0;
+        String strPayload;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(3);
+        nf.setMinimumFractionDigits(3);
+        DecimalFormat df = (DecimalFormat) nf;
+
+        // loop over list and add each payload to output file.
+        System.out.println("\n");
+        nct = list.getNodeCounter();
+        dNode = list.getHead();
+        for (int j = 0; j < nct; j++) {
+            dPayload = dNode.getPayload();
+            df.setGroupingUsed(false);
+            strPayload = df.format(dPayload);
+            System.out.println(strPayload);
+            dNode = dNode.getNext();
+        }
+        System.out.println("\n");
+    }   // end writeDoublesToConsole.
 
 
     /**
@@ -122,6 +155,8 @@ public class ListHelper {
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(3);
             nf.setMinimumFractionDigits(3);
+            DecimalFormat df = (DecimalFormat) nf;
+            df.setGroupingUsed(false);
             String strPayload;
 
             // loop over list and add each payload to output file.
@@ -129,7 +164,7 @@ public class ListHelper {
             dNode = list.getHead();
             for (int j = 0; j < nct; j++) {
                 dPayload = dNode.getPayload();
-                strPayload = nf.format(dPayload);
+                strPayload = df.format(dPayload);
                 // TODO:  remove this output.
                 System.out.println(strPayload);
                 dblOut.println(strPayload);
