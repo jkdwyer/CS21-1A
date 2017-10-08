@@ -3,24 +3,30 @@
  * - This class must be the subclass of AbstractLinkedList.
  *
  * @author Jan Dwyer
- * @version 1.0     10/3/2017.
+ * @version 1.1     10/8/2017.
  */
 public class LinkedList extends AbstractLinkedList {
     /**
-     * Constructor 1.
-     * - no-args constructor.
-     */
-    public LinkedList() {
-    }   // end Constructor 1.
-
-
-    /**
-     * Constructor 2.
+     * insertNode() method
+     * - Accepts a node with no other args and adds it
+     *      to the head of the chain.  Increments nodeCounter.
      * @param node
      */
-    public LinkedList(Node node) {
-        insertNode(node);
-    }   // end Constructor 2.
+    public void insertNode(Node node){
+        if (nodeCounter == 0) {
+            head = node;
+            tail = node;
+        } else {
+            // set incoming node next-ref to existing head.
+            node.setNext(head);
+            // set existing head last-ref to incoming node.
+            head.setLast(node);
+            // set new head to incoming node.
+            // tail is not affected by insert.
+            head = node;
+        }
+        nodeCounter++;
+    }   // end insertNode.
 
 
     /**
@@ -111,27 +117,4 @@ public class LinkedList extends AbstractLinkedList {
         }
         nodeCounter++;
     }   // end insertListNode.
-
-
-    /**
-     * insertNode() method
-     * - Accepts a node with no other args and adds it
-     *      to the head of the chain.  Increments nodeCounter.
-     * @param node
-     */
-    public void insertNode(Node node){
-        if (nodeCounter == 0) {
-            head = node;
-            tail = node;
-        } else {
-            // set incoming node next-ref to existing head.
-            node.setNext(head);
-            // set existing head last-ref to incoming node.
-            head.setLast(node);
-            // set new head to incoming node.
-            // tail is not affected by insert.
-            head = node;
-        }
-        nodeCounter++;
-    }   // end insertNode.
 }   // end LinkedList subclass.
