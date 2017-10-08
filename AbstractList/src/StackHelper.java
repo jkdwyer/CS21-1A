@@ -144,8 +144,6 @@ public class StackHelper {
             for (int j = 0; j < nct; j++) {
                 dPayload = dNode.getPayload();
                 strPayload = df.format(dPayload);
-                // TODO:  remove this output.
-                System.out.println(strPayload);
                 dblOut.println(strPayload);
                 dNode = dNode.getNext();
             }

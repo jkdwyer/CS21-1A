@@ -1,9 +1,12 @@
 import junit.framework.TestCase;
-import java.io.*;
 
-public class ListHelperTest extends TestCase {
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.PrintStream;
+
+public class StackHelperTest extends TestCase {
     public void testReadDoublesFromConsole() throws Exception {
-        // How do I give this one console input?
         StringBuffer sb = new StringBuffer();
         sb.append(144);
         sb.append("\n");
@@ -20,28 +23,26 @@ public class ListHelperTest extends TestCase {
         // No need for ctl-D here.
         String inputString = sb.toString();
 
-        // this snippet is from StackOverflow
         ByteArrayInputStream in = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(in);
 
-        // do your thing
-        LinkedList newList = ListHelper.readDoublesFromConsole();
+        Stack newStack = StackHelper.readDoublesFromConsole();
 
-        LinkedList testList = new LinkedList();
+        Stack testStack = new Stack();
         Node n1 = new Node(144);
         Node n2 = new Node(12.22);
         Node n3 = new Node(3333.88999);
         Node n4 = new Node(150.0123);
         Node n5 = new Node(0.0847);
         Node n6 = new Node(16.9);
-        testList.insertNode(n1);   // 6 (tail)
-        testList.insertNode(n2);   // 5
-        testList.insertNode(n3);   // 4
-        testList.insertNode(n4);   // 3
-        testList.insertNode(n5);   // 2
-        testList.insertNode(n6);   // 1 (head)
-        StringBuffer nb = newList.createChain();
-        StringBuffer tb = testList.createChain();
+        testStack.insertNode(n1);   // 6 (tail)
+        testStack.insertNode(n2);   // 5
+        testStack.insertNode(n3);   // 4
+        testStack.insertNode(n4);   // 3
+        testStack.insertNode(n5);   // 2
+        testStack.insertNode(n6);   // 1 (head)
+        StringBuffer nb = newStack.createChain();
+        StringBuffer tb = testStack.createChain();
         String nl = nb.toString();
         String tl = tb.toString();
         // this .equals() only works on two String objects.
@@ -52,8 +53,8 @@ public class ListHelperTest extends TestCase {
         System.setIn(System.in);
 
         // show me.
-        // newList.printChain();
-        // testList.printChain();
+        // newStack.printChain();
+        // testStack.printChain();
     }
 
     public void testReadDoublesFromFileWhenNoFileExists() throws Exception {
@@ -63,11 +64,11 @@ public class ListHelperTest extends TestCase {
         System.setOut(ps);
 
         String readFromFile = "noSuchFile.txt";
-        LinkedList dblList = ListHelper.readDoublesFromFile(readFromFile);
-        dblList.printList();
+        Stack newStack = StackHelper.readDoublesFromFile(readFromFile);
+        newStack.printList();
         // this displays console message:  "Chain is empty"
 
-        StringBuffer sb = dblList.createChain();
+        StringBuffer sb = newStack.createChain();
         assertEquals(sb.toString(), myOut.toString());
 
         System.out.flush();
@@ -75,21 +76,16 @@ public class ListHelperTest extends TestCase {
     }
 
     public void testReadDoublesFromFileWhenFileExists() throws Exception {
-        // addition from another StackOverflow post, to save and then reset System.out.
         PrintStream oldStream = System.out;
-
-        // this solution is a snippet from StackOverflow, wrapped around my test output:
         ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
 
-        // my test output:
-        // this displays console output of list created.
         String readFromFile = "inputDoubles.txt";
-        LinkedList dblList = ListHelper.readDoublesFromFile(readFromFile);
-        dblList.printChain();
+        Stack newStack = StackHelper.readDoublesFromFile(readFromFile);
+        newStack.printChain();
 
         // my comparison code:
-        StringBuffer sb = dblList.createChain();
+        StringBuffer sb = newStack.createChain();
         assertEquals(sb.toString(), myOut.toString());
 
         // finish reset of System.out.
@@ -104,22 +100,22 @@ public class ListHelperTest extends TestCase {
         Node n4 = new Node(150.0123);
         Node n5 = new Node(0.0847);
         Node n6 = new Node(16.9);
-        LinkedList newList = new LinkedList();
-        newList.insertNode(n1);   // 6 (tail)
-        newList.insertNode(n2);   // 5
-        newList.insertNode(n3);   // 4
-        newList.insertNode(n4);   // 3
-        newList.insertNode(n5);   // 2
-        newList.insertNode(n6);   // 1 (head)
+        Stack newStack = new Stack();
+        newStack.insertNode(n1);   // 6 (tail)
+        newStack.insertNode(n2);   // 5
+        newStack.insertNode(n3);   // 4
+        newStack.insertNode(n4);   // 3
+        newStack.insertNode(n5);   // 2
+        newStack.insertNode(n6);   // 1 (head)
 
         PrintStream oldStream = System.out;
         ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(myOut);
         System.setOut(ps);
 
-        ListHelper.writeDoublesToConsole(newList);
+        StackHelper.writeDoublesToConsole(newStack);
         // this displays console output of list created.
-        StringBuffer sb = newList.createChain();
+        StringBuffer sb = newStack.createChain();
         assertEquals(sb.toString(), myOut.toString());
 
         System.out.flush();
@@ -133,18 +129,19 @@ public class ListHelperTest extends TestCase {
         Node n4 = new Node(150.0123);
         Node n5 = new Node(0.0847);
         Node n6 = new Node(16.9);
-        LinkedList newList = new LinkedList();
+        Stack newStack = new Stack();
         File dFile;
-        newList.insertNode(n1);   // 6 (tail)
-        newList.insertNode(n2);   // 5
-        newList.insertNode(n3);   // 4
-        newList.insertNode(n4);   // 3
-        newList.insertNode(n5);   // 2
-        newList.insertNode(n6);   // 1 (head)
-        String filename = "outputLHTest.txt";
-        ListHelper.writeDoublesToFile(newList, filename);
+        newStack.insertNode(n1);   // 6 (tail)
+        newStack.insertNode(n2);   // 5
+        newStack.insertNode(n3);   // 4
+        newStack.insertNode(n4);   // 3
+        newStack.insertNode(n5);   // 2
+        newStack.insertNode(n6);   // 1 (head)
+        String filename = "outputSHTest.txt";
+        StackHelper.writeDoublesToFile(newStack, filename);
         dFile = new File(filename);
         assertTrue(dFile.exists());
         // this worked.  deleted the file so I can re-run it.
     }
+
 }

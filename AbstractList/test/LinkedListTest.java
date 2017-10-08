@@ -1,15 +1,28 @@
 import junit.framework.TestCase;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class LinkedListTest extends TestCase {
     private String after = "after";
     private String before = "before";
 
     public void testDeleteListNodeListEmpty() throws Exception {
+        PrintStream oldStream = System.out;
+        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(myOut);
+        System.setOut(ps);
+
         LinkedList dl2 = new LinkedList();
         Node n1 = new Node();
         dl2.deleteListNode(n1);
         // This displays console output: "List is empty"
-        // TODO:  Can this test be improved?
+
+        String s = "List is empty" + "\n";
+        assertEquals(s, myOut.toString());
+
+        System.out.flush();
+        System.setOut(oldStream);
     }
 
     public void testDeleteListNodeHead() throws Exception {

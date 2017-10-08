@@ -160,7 +160,8 @@ public abstract class AbstractLinkedList {
      */
     public void printList() {
         StringBuffer chain = createPrintList();
-        System.out.println(chain);
+        System.out.print(chain);
+        // Used print instead of println to aid the JUnit test.
     }   // end printList.
 
 
@@ -212,7 +213,8 @@ public abstract class AbstractLinkedList {
      */
     public void printChain() {
         StringBuffer chain = createChain();
-        System.out.println(chain);
+        System.out.print(chain);
+        // Used print instead of println to aid the JUnit test.
     }   // end printChain.
 
 

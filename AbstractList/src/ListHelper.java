@@ -16,9 +16,9 @@ public class ListHelper {
      * @return LinkedList
      */
     public static LinkedList readDoublesFromConsole() {
-        System.out.println("in readDoublesFromConsole()");
-        System.out.println("\nPlease type in a list of double values, " +
-                "one per line,\n and then finish by typing Command-D: ");
+        // System.out.println("in readDoublesFromConsole()");
+        // System.out.println("\nPlease type in a list of double values, " +
+        //        "one per line,\n and then finish by typing Command-D: ");
         LinkedList list = new LinkedList();
         Scanner ds = new Scanner(System.in);
         int wct = 0;
@@ -51,7 +51,7 @@ public class ListHelper {
      * @return LinkedList
      */
     public static LinkedList readDoublesFromFile(String filename) {
-        System.out.println("in readDoublesFromFile()");
+        // System.out.println("in readDoublesFromFile()");
         LinkedList list = new LinkedList();
         double dbl = 0.0;
         int wct = 0;
@@ -66,9 +66,8 @@ public class ListHelper {
         try {
             dblFile = new File(filename);
             if (dblFile.exists()) {
-                // TODO:  remove this output.
-                System.out.println("Name: " + dblFile.getName());
-                System.out.println("Readable: " + dblFile.canRead());
+                // System.out.println("Name: " + dblFile.getName());
+                // System.out.println("Readable: " + dblFile.canRead());
 
                 frInput = new FileReader(dblFile);
                 bufInput = new BufferedReader(frInput);
@@ -104,7 +103,7 @@ public class ListHelper {
      * @param list
      */
     public static void writeDoublesToConsole(LinkedList list) {
-        System.out.println("in writeDoublesToConsole()");
+        // System.out.println("in writeDoublesToConsole()");
         int nct = 0;
         Node dNode;
         double dPayload = 0.0;
@@ -137,7 +136,7 @@ public class ListHelper {
      * @param filename
      */
     public static void writeDoublesToFile(LinkedList list, String filename) {
-        System.out.println("in writeDoublesToFile()");
+        // System.out.println("in writeDoublesToFile()");
         int nct = 0;
         Node dNode;
         double dPayload = 0.0;
@@ -165,8 +164,6 @@ public class ListHelper {
             for (int j = 0; j < nct; j++) {
                 dPayload = dNode.getPayload();
                 strPayload = df.format(dPayload);
-                // TODO:  remove this output.
-                System.out.println(strPayload);
                 dblOut.println(strPayload);
                 dNode = dNode.getNext();
             }
