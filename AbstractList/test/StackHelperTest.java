@@ -114,8 +114,13 @@ public class StackHelperTest extends TestCase {
         System.setOut(ps);
 
         StackHelper.writeDoublesToConsole(newStack);
-        // this displays console output of list created.
-        StringBuffer sb = newStack.createChain();
+        StringBuffer sb = new StringBuffer();
+        sb.append("\n\n16.900");
+        sb.append("\n0.085");
+        sb.append("\n150.012");
+        sb.append("\n3333.890");
+        sb.append("\n12.220");
+        sb.append("\n144.000\n\n\n");
         assertEquals(sb.toString(), myOut.toString());
 
         System.out.flush();

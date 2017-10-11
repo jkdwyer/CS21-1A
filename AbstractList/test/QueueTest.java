@@ -65,8 +65,8 @@ public class QueueTest extends TestCase {
         q.insertNode(n1);
         q.insertNode(n2);
         q.insertNode(n3);
-        assertEquals(q.head, n3);
-        assertEquals(q.getHead(), n3);
+        assertEquals(q.head, n1);
+        assertEquals(q.getHead(), n1);
     }
 
     public void testGetTail() throws Exception {
@@ -77,8 +77,8 @@ public class QueueTest extends TestCase {
         q.insertNode(n1);
         q.insertNode(n2);
         q.insertNode(n3);
-        assertEquals(q.tail, n1);
-        assertEquals(q.getTail(), n1);
+        assertEquals(q.tail, n3);
+        assertEquals(q.getTail(), n3);
     }
 
     public void testSearchByNode() throws Exception {
